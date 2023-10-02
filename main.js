@@ -27,6 +27,16 @@ function listFilesRecursively(dir) {
         } else if (stats.isFile()) {
             console.log(`Fichier: ${filePath}`);
 
+            const fileExtension = path.extname(filePath).toLowerCase();
+
+            const IMAGE_VIDEO_EXTENSIONS = ['.jpg', '.jpeg', '.png', '.gif', '.mp4', '.avi', '.svg'];
+
+            // Vérifiez si le fichier est une image ou une vidéo
+            if (IMAGE_VIDEO_EXTENSIONS.includes(fileExtension)) {
+                console.log(`Le fichier ${filePath} est une image ou une vidéo. Le remplacement de liens est ignoré.`);
+                return; // Ne faites rien si c'est une image ou une vidéo
+            }
+
             let fileContent = fs.readFileSync(filePath, 'utf8');
             let replaced = true;
 
