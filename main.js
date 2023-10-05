@@ -13,7 +13,8 @@ const dotenv = require('dotenv');
 dotenv.config();
 
 const rootDir = process.env.dir || './out'; // Dossier racine par défaut
-const searchTextArray = process.env.intext ? process.env.intext.split(',') : [];
+const mode = process.env.mode || null; // Mode par défaut
+let searchTextArray = process.env.intext ? process.env.intext.split(',') : [];
 const replaceText = process.env.outext || '';
 
 function listFilesRecursively(dir) {
@@ -29,6 +30,11 @@ function listFilesRecursively(dir) {
 
             const fileExtension = path.extname(filePath).toLowerCase();
 
+            if (mode === 'one') {
+                // Rechercher et remplacer le texte complet
+                searchTextArray = [process.env.intext]; // Utilise le texte complet comme seul élément de l'array
+            }
+            
             const IMAGE_VIDEO_EXTENSIONS = ['.jpg', '.jpeg', '.png', '.gif', '.mp4', '.avi', '.svg'];
 
             // Vérifiez si le fichier est une image ou une vidéo

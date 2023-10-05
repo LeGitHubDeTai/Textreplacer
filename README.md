@@ -18,11 +18,13 @@ npm install
 
 ```env
 dir=/chemin/vers/le/dossier/racine
+mode=null
 intext=texte1,texte2,texte3
 outext=texte_de_remplacement
 ```
 
 - `dir`: Le chemin du dossier racine que vous souhaitez scanner.
+- `mode`: Le mode d'exécution ('null' pour l'exécution normale, 'one' pour rechercher le texte complet).
 - `intext`: Une liste de textes à rechercher (séparés par des virgules).
 - `outext`: Le texte de remplacement.
 
